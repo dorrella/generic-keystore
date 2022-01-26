@@ -48,13 +48,33 @@ func (r *Result) Percentiles(tests int) {
 		slowest := r.duration[next-1].Nanoseconds()
 		index = next + 1
 		//trim down on output
-		if (p > 5 && p < 10) || (p > 10 && p < 25) || (p > 25 && p < 50) {
+		if do_continue(p) {
 			continue
 		}
 
-		if (p > 50 && p < 95) || (p > 95 && p < 99) {
-			continue
-		}
 		fmt.Printf("p:%d start %d nanoseconds, end %d nanoseconds\n", p, fastest, slowest)
+	}
+}
+
+//helper to continue
+func do_continue(p int) bool {
+	if p >= 0 && p <= 10 {
+		return false
+	}
+	switch p {
+	case 25:
+		return false
+	case 50:
+		return false
+	case 75:
+		return false
+	case 90:
+		return false
+	case 95:
+		return false
+	case 99:
+		return false
+	default:
+		return true
 	}
 }

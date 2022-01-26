@@ -255,7 +255,7 @@ of seconds and then calls `Delete(key)`.
 #### Sync.Map
 
 The sync library also provides an `interface{}` based map that is
-designed for chaches. It is unclear if using that would be faster,
+designed for caches. It is unclear if using that would be faster,
 but the `sync` library documentation is clear that it is heavily
 optimised for cache use.
 
